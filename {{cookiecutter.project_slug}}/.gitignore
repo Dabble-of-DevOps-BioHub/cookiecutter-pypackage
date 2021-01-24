@@ -104,6 +104,16 @@ ENV/
 # IDE settings
 .vscode/
 
-# AWS
+# AWS Credentials
 .aws
 **/.aws
+
+# Kubernetes Credentials
+.kube
+**/.kube
+
+# Terraform
+.terraform
+**/.terraform
+*tfstate*
+**/*tfstate*
