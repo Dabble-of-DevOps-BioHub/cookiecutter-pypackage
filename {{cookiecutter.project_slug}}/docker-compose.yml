@@ -1,0 +1,36 @@
+version: '3'
+
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+
+  jupyter:
+    build:
+      context: . 
+      dockerfile: docs/Dockerfile
+    volumes:
+      - ./docs:/docs:z
+      - ./:/app:z
+    ports:
+      - "8889:8888"
+    working_dir: "/docs"
+    networks:
+      - app-tier
+    command: |
+      bash -c "source activate notebook && jupyter notebook --ip 0.0.0.0 --allow-root"
+
+  jupyter-book:
+    build:
+      context: docs
+      dockerfile: docs/Dockerfile
+    volumes:
+      - ./docs:/docs:z
+      - ./:/app:z
+    ports:
+      - "8002:8001"
+    networks:
+      - app-tier
+    command: |
+      bash -c "source activate notebook && python /docs/run-jupyterbook.py"
