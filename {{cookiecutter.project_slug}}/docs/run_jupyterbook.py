@@ -2,6 +2,8 @@
 from livereload import Server, shell
 import os
 
+# TODO Make have input params
+
 source_dir = "/docs/_source"
 server = Server()
 server.watch(

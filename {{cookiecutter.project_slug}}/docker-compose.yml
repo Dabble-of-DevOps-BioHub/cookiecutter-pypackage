@@ -29,8 +29,8 @@ services:
       - ./docs:/docs:z
       - ./:/app:z
     ports:
-      - "8002:8001"
+      - "8001:8001"
     networks:
       - app-tier
     command: |
-      bash -c "source activate notebook && python /docs/run-jupyterbook.py"
+      bash -c "python /docs/run_jupyterbook.py"
