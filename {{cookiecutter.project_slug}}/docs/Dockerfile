@@ -26,15 +26,13 @@ RUN apt-get update -y \
     texlive-latex-extra \
     latexmk \
     texlive-xetex  \
-    chromium-chromedriver \
-    && apt-get install -y $(cat /requirements/pyppeteer_reqs.txt) \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && rm -rf /var/lib/apt/lists/*
 
 RUN conda install -y -c conda-forge jupyterlab=2.2.9 jupyter-server-proxy pip
-RUN jupyter labextension install @jupyterlab/server-proxy
+#RUN jupyter labextension install @jupyterlab/server-proxy
 
-COPY ./requirements /requirements
+COPY ./requirements* /requirements
 # All imports needed for autodoc.
 RUN pip install -r /requirements/requirements_dev.txt -r /requirements/requirements.txt
 
