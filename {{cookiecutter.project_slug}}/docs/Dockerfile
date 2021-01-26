@@ -31,7 +31,8 @@ RUN apt-get update -y \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && rm -rf /var/lib/apt/lists/*
 
-RUN conda install -y -c conda-forge jupyterlab pip
+RUN conda install -y -c conda-forge jupyterlab=2.2.9 jupyter-server-proxy pip
+RUN jupyter labextension install @jupyterlab/server-proxy
 
 COPY ./requirements /requirements
 # All imports needed for autodoc.
